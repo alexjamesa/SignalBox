@@ -11,25 +11,45 @@ import XCTest
 
 class SignalBoxTests: XCTestCase {
     
+    var testSignal:Signal = Signal(data: [1,2,3,2,1], Fs: 1000.0)
+    let pathOfBigData = "/Users/U3/U3 Data/4V. My Folders/Engineer/Ten Kettles/Apps/Misc./SignalBox/testdata.txt"
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testFileLoadSize(){
+        let signalFromText = Signal(path: pathOfBigData, Fs: 1000)
+        let value = signalFromText.data.count
+        XCTAssert(value == 10000, "Value was \(value)")
+    }
+    
+    func testFileLoadContent(){
+        let signalFromText = Signal(path: pathOfBigData, Fs: 1000)
+        let value = signalFromText.data[3]
+        XCTAssert(abs(value - 0.9134) < 0.001, "Value was \(value)")
+    }
+    
+    func testTime() {
+        let value = testSignal.time[1]
+        XCTAssert(value == 0.001, "Value was \(value)")
+    }
+    
+    func testMax(){
+        let value = testSignal.max
+        XCTAssert(value == 3, "Value was \(value)")
+        
     }
     
     func testPerformanceExample() {
-        // This is an example of a performance test case.
         self.measureBlock {
-            // Put the code you want to measure the time of here.
+            for _ in 0..<100{
+                _ = Signal(path: self.pathOfBigData, Fs: 1000)
+            }
         }
     }
     
