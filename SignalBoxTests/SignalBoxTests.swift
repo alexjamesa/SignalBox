@@ -2,7 +2,7 @@
 //  SignalBoxTests.swift
 //  SignalBoxTests
 //
-//  Created by U3 on 160213.
+//  Created by Alex Andrews on 160213.
 //  Copyright © 2016 Ten Kettles Inc. All rights reserved.
 //
 
@@ -43,6 +43,11 @@ class SignalBoxTests: XCTestCase {
         let value = testSignal.max
         XCTAssert(value == 3, "Value was \(value)")
         
+    }
+    
+    func testMin(){
+        let value = testSignal.min
+        XCTAssert(value == 1, "Value was \(value)")
     }
     
     func testPerformanceExample() {
