@@ -4,18 +4,23 @@ import Cocoa
 import XCPlayground
 @testable import SignalBox
 
-let testFilePath = NSBundle.mainBundle().pathForResource("testdata2", ofType: "txt")!
-
-let newSignal = Signal(path: testFilePath, Fs: 1000)
-newSignal.data
-
+// A helper function for easy plotting
 func plotArrayInPlayground<T>(arrayToPlot:Array<T>, title:String) {
     for currentValue in arrayToPlot {
         XCPCaptureValue(title, value: currentValue)
     }
 }
 
-plotArrayInPlayground(newSignal.data, title: "Noise")
+
+let testFilePath = NSBundle.mainBundle().pathForResource("testdata_1k", ofType: "txt")!
+let signalFromFile = Signal(path: testFilePath, Fs: 1000)
+signalFromFile.data
+plotArrayInPlayground(signalFromFile.data, title: "From file")
+
+
+let signalFromArray = Signal(data: [1,4,3], Fs: 100)
+signalFromArray.data
+plotArrayInPlayground(signalFromArray.data, title: "From data")
 
 
 

@@ -2,7 +2,7 @@
 //  SignalBox.h
 //  SignalBox
 //
-//  Created by U3 on 160213.
+//  Created by Alex Andrews on 160213.
 //  Copyright © 2016 Ten Kettles Inc. All rights reserved.
 //
 
